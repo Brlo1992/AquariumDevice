@@ -34,15 +34,22 @@ Result Router::SelectAction(String route)
     {
         String id = route.substr(12, route.length() - 1)
         Serial.println("Turn on single led set");
-        digitalWrite(4, HIGH);
+        digitalWrite(atoi(id.c_str());, HIGH);
     }
 
     else if ((route.substr(0,12)).equals("turnOffLedSet"))
     {
         String id = route.substr(13, route.length() - 1)
         Serial.println("Turn off single led set");
-        digitalWrite(4, LOW);
+        digitalWrite(atoi(id.c_str(), LOW);
     }
+    else if (route.equals("getLedPins"))
+    {
+        String id = route.substr(13, route.length() - 1)
+        Serial.println("Get led pins");
+        body = "[13,14,15]";
+    }
+
     else
     {
         body = "{ \"status\": \"Invalid request\"}";
