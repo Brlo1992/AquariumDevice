@@ -18,7 +18,6 @@ Result Router::SelectAction(String route)
     }
     else if (route.equals("turnOn"))
     {
-        body = "{ \"alive\": \"true\"}";
         Serial.println("Turn on leds");
         digitalWrite(4, HIGH);
         digitalWrite(5, HIGH);
@@ -26,11 +25,23 @@ Result Router::SelectAction(String route)
     }
     else if (route.equals("turnOff"))
     {
-        body = "{ \"data\": {\"setInterval\": \"5000\", \"logErrors\": \"true\"}}";
         Serial.println("Turn off leds");
         digitalWrite(4, LOW);
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
+    }
+    else if ((route.substr(0,11)).equals("turnOnLedSet"))
+    {
+        String id = route.substr(12, route.length() - 1)
+        Serial.println("Turn on single led set");
+        digitalWrite(4, HIGH);
+    }
+
+    else if ((route.substr(0,12)).equals("turnOffLedSet"))
+    {
+        String id = route.substr(13, route.length() - 1)
+        Serial.println("Turn off single led set");
+        digitalWrite(4, LOW);
     }
     else
     {
