@@ -58,8 +58,9 @@ Result Router::SelectAction(String route)
 
     Serial.println(route);
 
+    result.SetResult(body);
 
-    return service.Execute(request);
+    return result;
 }
 
 String Router::ExtractAddressData(String request){
