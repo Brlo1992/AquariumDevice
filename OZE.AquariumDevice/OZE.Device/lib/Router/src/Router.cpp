@@ -21,6 +21,7 @@ Result Router::SelectAction(String route)
         digitalWrite(4, HIGH);
         digitalWrite(5, HIGH);
         digitalWrite(6, HIGH);
+        body = "{\"status\": \"on\" }";
     }
     else if (route.equals("turnOff"))
     {
@@ -28,6 +29,7 @@ Result Router::SelectAction(String route)
         digitalWrite(4, LOW);
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
+        body = "{\"status\": \"off\" }";
     }
     else if ((route.substring(0,12)).equals("turnOnLedSet"))
     {
@@ -35,6 +37,7 @@ Result Router::SelectAction(String route)
         Serial.println("Turn on single led set");
         Serial.println(id);
         digitalWrite(atoi(id.c_str()), HIGH);
+        body = "{\"status\": \"on\" }";
     }
  
     else if ((route.substring(0,13)).equals("turnOffLedSet"))
@@ -43,6 +46,7 @@ Result Router::SelectAction(String route)
         Serial.println("Turn off single led set");
         Serial.println(id);
         digitalWrite(atoi(id.c_str()), LOW);
+        body = "{\"status\": \"off\" }";
     }
     else if (route.equals("getLedPins"))
     {
@@ -57,7 +61,7 @@ Result Router::SelectAction(String route)
     }
 
     Serial.println(route);
-
+    Serial.println(route);
     result.SetResult(body);
 
     return result;
