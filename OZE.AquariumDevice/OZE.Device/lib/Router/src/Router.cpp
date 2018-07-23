@@ -29,17 +29,19 @@ Result Router::SelectAction(String route)
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
     }
-    else if ((route.substring(0,11)).equals("turnOnLedSet"))
+    else if ((route.substring(0,12)).equals("turnOnLedSet"))
     {
-        String id = route.substring(12, route.length() - 1);
+        String id = route.substring(12);
         Serial.println("Turn on single led set");
+        Serial.println(id);
         digitalWrite(atoi(id.c_str()), HIGH);
     }
-
-    else if ((route.substring(0,12)).equals("turnOffLedSet"))
+ 
+    else if ((route.substring(0,13)).equals("turnOffLedSet"))
     {
-        String id = route.substring(13, route.length() - 1);
+        String id = route.substring(13);
         Serial.println("Turn off single led set");
+        Serial.println(id);
         digitalWrite(atoi(id.c_str()), LOW);
     }
     else if (route.equals("getLedPins"))
@@ -54,10 +56,14 @@ Result Router::SelectAction(String route)
         body = "{ \"status\": \"Invalid request\"}";
     }
 
+    Serial.println(route);
+
+
     return service.Execute(request);
 }
 
 String Router::ExtractAddressData(String request){
+    Serial.println(request); 
     String addressRoutePart = request.substring(request.indexOf(" "), request.indexOf("HTTP"));
 
     addressRoutePart.replace("/", "");
