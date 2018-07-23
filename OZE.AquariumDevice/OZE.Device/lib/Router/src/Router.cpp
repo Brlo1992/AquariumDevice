@@ -1,5 +1,4 @@
 #include "Router.h"
-#include "WString.h"
 #include "Result.h"
 #include "Service.h"
 #include "InfoService.h"
@@ -30,22 +29,22 @@ Result Router::SelectAction(String route)
         digitalWrite(5, LOW);
         digitalWrite(6, LOW);
     }
-    else if ((route.substr(0,11)).equals("turnOnLedSet"))
+    else if ((route.substring(0,11)).equals("turnOnLedSet"))
     {
-        String id = route.substr(12, route.length() - 1)
+        String id = route.substring(12, route.length() - 1);
         Serial.println("Turn on single led set");
         digitalWrite(atoi(id.c_str()), HIGH);
     }
 
-    else if ((route.substr(0,12)).equals("turnOffLedSet"))
+    else if ((route.substring(0,12)).equals("turnOffLedSet"))
     {
-        String id = route.substr(13, route.length() - 1)
+        String id = route.substring(13, route.length() - 1);
         Serial.println("Turn off single led set");
-        digitalWrite(atoi(id.c_str(), LOW));
+        digitalWrite(atoi(id.c_str()), LOW);
     }
     else if (route.equals("getLedPins"))
     {
-        String id = route.substr(13, route.length() - 1)
+        String id = route.substring(13, route.length() - 1);
         Serial.println("Get led pins");
         body = "[13,14,15]";
     }
