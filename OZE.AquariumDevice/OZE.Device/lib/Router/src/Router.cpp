@@ -41,7 +41,7 @@ Result Router::SelectAction(String route)
         Serial.println("Turn on single led set");
         Serial.println(id);
         digitalWrite(atoi(id.c_str()), HIGH);
-        body = "{\"status\": \"on\" }";
+        body = "{\"status\": \"on\",  \"id\" :\"" + id "\" }";
     }
  
     else if ((route.substring(0,13)).equals("turnOffLedSet"))
@@ -50,13 +50,13 @@ Result Router::SelectAction(String route)
         Serial.println("Turn off single led set");
         Serial.println(id);
         digitalWrite(atoi(id.c_str()), LOW);
-        body = "{\"status\": \"off\" }";
+        body = "{\"status\": \"off\",  \"id\" :\"" + id "\" }";
     }
     else if (route.equals("getLedPins"))
     {
         String id = route.substring(13, route.length() - 1);
         Serial.println("Get led pins");
-        body = "[13,14,15]";
+        body = "[4,5,6]";
     }
 
     else
