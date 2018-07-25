@@ -32,8 +32,6 @@ void WebServer::Run(EthernetServer server)
 
                 Result result = router.SelectAction(route);
 
-                Serial.println(result.GetResult());
-
                 responseFactory.Handle(client, result.GetResult());
                 
                 break;

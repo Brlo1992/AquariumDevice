@@ -60,8 +60,6 @@ Result Router::SelectAction(String route)
         body = "{ \"status\": \"Invalid request\"}";
     }
 
-    Serial.println(route);
-    Serial.println(route);
     result.SetResult(body);
 
     return result;
