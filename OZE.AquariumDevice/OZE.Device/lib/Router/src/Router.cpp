@@ -11,6 +11,10 @@ Result Router::SelectAction(String route)
     Result result = Result();
     Request request = Request();
 
+    int pingOne = 4;
+    int pingTwo = 5;
+    int pingThree = 6;
+
     if (route.equals(""))
     {
         service = InfoService();
@@ -18,17 +22,17 @@ Result Router::SelectAction(String route)
     else if (route.equals("turnOn"))
     {
         Serial.println("Turn on leds");
-        digitalWrite(4, HIGH);
-        digitalWrite(5, HIGH);
-        digitalWrite(6, HIGH);
+        digitalWrite(pingOne, HIGH);
+        digitalWrite(pingTwo, HIGH);
+        digitalWrite(pingThree, HIGH);
         body = "{\"status\": \"on\" }";
     }
     else if (route.equals("turnOff"))
     {
         Serial.println("Turn off leds");
-        digitalWrite(4, LOW);
-        digitalWrite(5, LOW);
-        digitalWrite(6, LOW);
+        digitalWrite(pingOne, LOW);
+        digitalWrite(pingTwo, LOW);
+        digitalWrite(pingThree, LOW);
         body = "{\"status\": \"off\" }";
     }
     else if ((route.substring(0,12)).equals("turnOnLedSet"))
